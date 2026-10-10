@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS Image Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+    <h1 class="page__title">Image Slider Library</h1>
+
+    <div class="slider" id="gallery">
+        <div class="slider__viewport">
+            <div class="slider__track">
+                <figure class="slider__slide">
+                    <img src="images/slide-1.jpg" alt="Sunrise Ridge">
+                </figure>
+                <figure class="slider__slide">
+                    <img src="images/slide-2.jpg" alt="Coastal Drift">
+                </figure>
+                <figure class="slider__slide">
+                    <img src="images/slide-3.jpg" alt="Pine Valley">
+                </figure>
+                <figure class="slider__slide">
+                    <img src="images/slide-4.jpg" alt="Desert Dusk">
+                </figure>
+                <figure class="slider__slide">
+                    <img src="images/slide-5.jpg" alt="Glacier Night">
+                </figure>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="slider.js"></script>
+<script>
+    new ImageSlider("#gallery");
+</script>
+</body>
+</html>

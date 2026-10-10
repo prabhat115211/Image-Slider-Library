@@ -1,0 +1,117 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #12141c;
+    color: #f2f4f8;
+}
+
+.page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: clamp(1rem, 4vw, 3rem);
+}
+
+.page__title { margin: 0 0 1rem; font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+/* ---------- Slider ---------- */
+.slider {
+    position: relative;
+    width: 100%;
+    user-select: none;
+}
+
+/* Overflow mask: only one slide is visible at a time */
+.slider__viewport {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    background: #000;
+}
+
+/* Flex track: slides side by side, moved with transform */
+.slider__track {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 500ms cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+}
+
+.slider__track.is-instant { transition: none; }
+
+.slider__slide {
+    flex: 0 0 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.slider__slide img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* ---------- Arrows ---------- */
+.slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 200ms ease;
+}
+.slider__arrow:hover,
+.slider__arrow:focus-visible { background: rgba(0, 0, 0, 0.75); outline: 2px solid #fff; }
+.slider__arrow--prev { left: 12px; }
+.slider__arrow--next { right: 12px; }
+
+/* ---------- Dots ---------- */
+.slider__dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.slider__dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+}
+.slider__dot:hover { transform: scale(1.2); }
+.slider__dot.is-active { background: #fff; transform: scale(1.25); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .slider__viewport { aspect-ratio: 4 / 3; border-radius: 8px; }
+    .slider__arrow { width: 36px; height: 36px; font-size: 1.2rem; }
+    .slider__arrow--prev { left: 6px; }
+    .slider__arrow--next { right: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slider__track { transition-duration: 1ms; }
+}
